@@ -11,7 +11,7 @@ export class NewsItem extends Component {
       <div>
         <div className="my-3">
           <div className="card" style={{ width: "18rem" }}>
-            <img src={imageUrl} className="card-img-top" alt="..." />
+            <img src={!imageUrl?"https://www.coindesk.com/resizer/C8yqxagJEupXxE6r3FGYY8q6UrM=/1200x628/center/middle/cloudfront-us-east-1.images.arcpublishing.com/coindesk/BAS6BC7ICZEKNK6NMHVIHJEAFA.jpg":imageUrl} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{title}</h5>
               <p className="card-text">{description}</p>
