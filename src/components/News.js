@@ -351,7 +351,16 @@ export class News extends Component {
     console.log(parseData);
     this.setState({articles:parseData.articles})
   }
+  handlePreviousClick=async()=>{
+    console.log("previous")
 
+  }
+  handleNextClick=async()=>{
+    console.log("Next");
+    this.setState({
+      page: this.state.page + 1,
+    })
+  }
   render() {
     return (
       <div className="container my-3">
@@ -368,8 +377,14 @@ export class News extends Component {
                   newsUrl={element.url}
                 />
               </div>
+              
             );
           })}
+        </div>
+        <div className="container d-flex justify-content-between">
+        <button disabled={this.state.page<=1} type="button" class="btn btn-dark" onClick={this.handlePreviousClick}>Previous</button>
+        <button type="button" class="btn btn-dark" onClick={this.handleNextClick}>Next</button>
+
         </div>
       </div>
     );
