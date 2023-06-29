@@ -336,7 +336,7 @@ export class News extends Component {
   ];
   constructor() {
     super();
-    console.log("hello");
+
     this.state = {
       articles: this.articles,
     };
@@ -344,21 +344,34 @@ export class News extends Component {
 
   async componentDidMount() {
     //async function
-    let url =
-      "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea";
+    let url ="https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea";
     let data = await fetch(url);
     let parseData =await data.json();
     console.log(parseData);
     this.setState({articles:parseData.articles})
   }
+
+  //next and previous buttons
   handlePreviousClick=async()=>{
     console.log("previous")
+    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea=${this.state.page -1 }&pageSize=20` ;
+    let data = await fetch(url);
+    let parseData =await data.json();
+    console.log(parseData);
+    this.setState({
+      page: this.state.page - 1,
+      articles:parseData.articles
+    })
 
   }
   handleNextClick=async()=>{
-    console.log("Next");
+    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea=${this.state.page +1 }` ;
+    let data = await fetch(url);
+    let parseData =await data.json();
+    console.log(parseData);
     this.setState({
       page: this.state.page + 1,
+      articles:parseData.articles
     })
   }
   render() {
@@ -381,9 +394,10 @@ export class News extends Component {
             );
           })}
         </div>
+         {/* buttons */}
         <div className="container d-flex justify-content-between">
-        <button disabled={this.state.page<=1} type="button" class="btn btn-dark" onClick={this.handlePreviousClick}>Previous</button>
-        <button type="button" class="btn btn-dark" onClick={this.handleNextClick}>Next</button>
+        <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePreviousClick}>Previous</button>
+        <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next</button>
 
         </div>
       </div>
