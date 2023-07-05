@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import "./News.css";
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
+  static defaultProps={
+    country:'in',
+    category :'general',
+
+  }
+  static propTypes={
+    country :PropTypes.string,
+    category: PropTypes.string,
+  }
   articles = [
     {
       source: {
@@ -344,7 +355,7 @@ export class News extends Component {
 
   async componentDidMount() {
     //async function
-    let url ="https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea";
+    let url ="https://newsapi.org/v2/top-headlines?country=us&category=business&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&apikey=c968d057a3f34b4aaca1de5737069bea";
     let data = await fetch(url);
     let parseData =await data.json();
     console.log(parseData);
@@ -354,7 +365,7 @@ export class News extends Component {
   //next and previous buttons
   handlePreviousClick=async()=>{
     console.log("previous")
-    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea=${this.state.page -1 }&pageSize=20` ;
+    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&apikey=c968d057a3f34b4aaca1de5737069bea=${this.state.page -1 }&pageSize=20` ;
     let data = await fetch(url);
     let parseData =await data.json();
     console.log(parseData);
@@ -365,7 +376,7 @@ export class News extends Component {
 
   }
   handleNextClick=async()=>{
-    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c968d057a3f34b4aaca1de5737069bea=${this.state.page +1 }` ;
+    let url =`https://newsapi.org/v2/top-headlines?country=us&category=business&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&category=${this.props.category}&apikey=c968d057a3f34b4aaca1de5737069bea=${this.state.page +1 }` ;
     let data = await fetch(url);
     let parseData =await data.json();
     console.log(parseData);
@@ -377,7 +388,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1>News Hub - Top Head Lines</h1>
+        <h1 className="text-center">News Hub - Top Head Lines</h1>
 
         <div className="row">
           {this.state.articles.map((element) => {
