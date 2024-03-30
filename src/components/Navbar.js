@@ -4,7 +4,7 @@ export class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{position: "fixed", width: "100%", zIndex: 1000}}>
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
               News Hub
@@ -35,31 +35,16 @@ export class Navbar extends Component {
                     About
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/">business</a> 
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/">entertainment </a>
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/">general </a>
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/">health </a>
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/">science </a>
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/"> sports </a>
-                </li>
-                  <li className="nav-item">
-                  <a className="nav-link" href="/">technology </a>
-                </li>
+                
               </ul>
             </div>
           </div>
         </nav>
+        {/* Add padding to the content below the navbar to prevent it from being hidden behind the fixed navbar */}
+        <div style={{ paddingTop: "56px" }}>
+          {/* Replace "56px" with the height of your navbar */}
+          {/* Your page content goes here */}
+        </div>
       </div>
     );
   }
